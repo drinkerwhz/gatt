@@ -1,0 +1,31 @@
+.tabbar{
+    display: flex;
+    margin-top: 30px;
+}
+.tabbar_same{
+    display: flex;
+    border: 1px solid #c2c2c2;
+    line-height: 22px;
+    height: 22px;
+    border-radius: 4px;
+    color: gray;
+}
+.tabbar_three{
+    margin-left: 20px;
+    width: 189px;
+}
+.tabbar_same div{
+    box-sizing: border-box;
+    text-align: center;
+    width: 63px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.tabbar_two{
+    margin-left: 8px;
+    width: 126px;
+}
+.current{
+    background-color: rgb(29, 129, 240);
+    color: white;
+}

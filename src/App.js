@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Tabbar from './tabbar/Tabbar.js'
+import Main from './main/Main.js'
+import './App.css'
+import { connect} from 'react-redux'
+import Tankuang from './tankuang/Tankuang.js'
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    {props.state.isopen?<Tankuang></Tankuang>:<div>
+      <div className='tab'>
+        <Tabbar></Tabbar>
+      </div>
+      <div className='main'>
+          <Main></Main>
+      </div>
+    </div>}
     </div>
-  );
+   
+  )
 }
-
-export default App;
+const mapStateToProps=(state)=>{
+  return{
+    state
+  }
+}
+export default connect(mapStateToProps)(App)
