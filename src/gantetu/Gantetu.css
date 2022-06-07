@@ -13,7 +13,14 @@
   height: 50px;
   border-top: 0px;
 }
-.title_time>div{
+.title_time .title_tian>div{
   display: inline-block;
-  
+}
+.title_time1{
+  height: 50px;
+  border-top: 0px;
+}
+.title_time2{
+  height: 50px;
+  border-top: 0px;
 }

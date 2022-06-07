@@ -5,44 +5,74 @@ import { connect } from 'react-redux';
 
 function Gantetu(props) {
   var count=[]
-  var ri=[],zhou=[],zhou6=[]
-  var i=0,j=0,s=0
+  var ri=[],zhou=[],s1=[],yue=[],year=[]
+  var i=0,s=0
   var xingqi=["日","一","二","三","四","五","六"]
-  const now=moment(props.state.mintime).format("YYYY-MM-DD")
-  console.log(now);
-  for (let index = 0; index <4; index++) {
+  const now=moment(moment(props.state.mintime)).startOf("month").format("YYYY-MM-DD")
+  for (let index = 0; index <5; index++) {
     count[i]=moment(now).subtract(-1*index, "month").format('YYYY.MM')
     s=s+moment(count[i]).daysInMonth()
     i=i+1
   }
-  for (let index1 = 0; index1 <s; index1++) {
-    ri[j]=moment(now).subtract(-1*index1, "days").format('YYYY.MM.DD')
-    zhou[j]=moment(now).subtract(-1*index1, "week").format('YYYY.MM.DD')
-    zhou6[j]=moment(now).subtract(-2*index1, "week").format('YYYY.MM.DD')
-    j=j+1
+  for(let x=0;x<s;x++){
+    ri[x]=moment(now).subtract(-1*x, "days").format('YYYY.MM.DD')
+  }
+  for(let index=0;index<4;index++){
+    year[index]=moment(now).subtract(-1*index, "year").format('YYYY.MM')
+    for(let i=0;i<12;i++){
+      yue[i]=moment(now).subtract(-1*i, "month").format('MM')
+    }
+  }
+  for(let x=0;Math.floor(x<s/8);x++){
+    zhou[x]=moment(now).subtract(-1*x, "week").format('YYYY.MM.DD')
+ 
+  }
+  for(let y=0;y<7;y++)
+  {
+    s1[y]=y
   }
   return (
     <div>
-    {props.state.current===1&&<div className='title'>
+    {props.state.current===1&&props.state.current1===2&&<div className='title'>
       <div className='title_time'>
+        <div className='title_tian'>
         {
-          count.map((item,key)=><div key={key} style={{marginLeft:'3px'}}>{item}<div>{ri.map(data=><span style={{width:'62px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div></div>)
+          count.map((item,key)=><div key={key} style={{width:`${moment(item).daysInMonth()*72}px`}}>{item}</div>)
         }
+        </div>
+        <div >{ri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
       </div>
       <div>  
-      {count.map(data=>ri.map((item,key)=><div style={{width:'60px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'810px'}} key={key}></div>))}
+      {ri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'810px',boxSizing:'border-box'}} key={key}></div>)}
       </div>
     </div>
     }
     {
-      props.state.current===2&&<div className='title'>
-      <div className='title_time'>
+      props.state.current===2&&props.state.current1===2&&<div className='title'>
+      <div className='title_time1'>
         {
-          count.map((item,key)=><div key={key} style={{marginLeft:'3px'}}>{item}<div>{zhou.map(data=><span style={{width:'200px',display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-6, "days").format("DD")}日{}</span>)}</div></div>)
+          <div>{count.map(item=><span style={{width:`${moment(item).daysInMonth()*48}px`,display:'inline-block'}}>{item}</span>)}</div>
+        }
+        {
+          <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-6, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
       <div>  
-      {count.map(data=>ri.map((item,key)=><div style={{width:'60px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'810px'}} key={key}></div>))}
+      {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'810px',boxSizing:"border-box",borderLeft:'0px'}} ></div>)}
+      </div>
+    </div>
+    }
+     {props.state.current===3&&props.state.current1===2&&<div className='title'>
+      <div className='title_time2'>
+      {
+          <div>{year.map(item=><span style={{width:`${365*24}px`,display:'inline-block'}}>{moment(item).format("YYYY")}</span>)}</div>
+        }
+        {
+          <div>{count.map(data=>yue.map(item=><span style={{width:`${24*moment(item).daysInMonth()}px`,display:'inline-block'}}>{item}月</span>))}</div>
+        }
+      </div>
+      <div>  
+      {count.map(item=>yue.map(data=><div style={{width:`${24*moment(data).daysInMonth()}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'810px',boxSizing:'border-box',borderLeft:'0px'}}></div>))}
       </div>
     </div>
     }

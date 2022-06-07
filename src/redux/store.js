@@ -46,7 +46,7 @@ const reducer=(preState={
     current:1,
     current1:1,
     mintime:"2022-01-27",
-    maxtime:"2022-08-27"
+    maxtime:"2023-01-27"
 },action)=>{
     let {type,data}=action
     let newState={...preState}
