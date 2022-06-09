@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { createStore } from 'redux';
 const reducer=(preState={
     isopen:false,
@@ -5,20 +6,28 @@ const reducer=(preState={
         {
             main:"产品设计吖吖",
             date:"今天",
-            start:"9:00",
-            end:"18:00"
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
         },
         {
             main:"需求调研需求调研需求",
             date:"周三",
-            start:"9:00",
-            end:"18:00"
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
         }, 
         {
             main:"场景分析场景分析",
-            time:"2天",
-            start:"周五",
-            end:"周六",
+            day:2,
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-11 18:00').format("YYYY-MM-DD HH:mm"),
+            daystart:"周五",
+            dayend:"周六",
 
         },
         {
@@ -58,7 +67,7 @@ const reducer=(preState={
             newState.isopen=true
             return newState
         case 'add_list':
-            newState.List=newState.List.concat({main:data.name,start:data.timestart,end:data.timeend,time:data.day})
+            newState.List=newState.List.concat({main:data.name,start:data.start,end:data.end,day:data.day,daystart:data.timestart,dayend:data.timeend})
             return newState
         case 'change_kong':
             newState.iskong=!newState.iskong

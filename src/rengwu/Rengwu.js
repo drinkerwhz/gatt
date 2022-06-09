@@ -2,6 +2,20 @@ import React from 'react'
 import duck from '../img/duck.webp'
 import {connect} from 'react-redux'
 import './Rengwu.css'
+import moment from 'moment'
+function time(start,end,xingqistart,xingqiend,count){
+  if(moment(start).format("YYYY-MM-DD")===moment(end).format("YYYY-MM-DD")){
+    if(moment(start).format("YYYY-MM-DD")===moment().format("YYYY-MM-DD")){
+      return '今天 '+moment(start).format("hh:mm")+'~'+moment(end).format("HH:mm")
+    }else{
+      return xingqistart+' '+moment(start).format("hh:mm")+'~'+moment(end).format("HH:mm")
+    }
+  }else{
+    if(count){
+      return xingqistart+'~'+xingqiend+' '+count+'天'
+    }
+  }
+}
 function Rengwu(props) {
     const handleClick=()=>{
        props.open()
@@ -42,7 +56,7 @@ function Rengwu(props) {
                   {item.main}
                   </div>
                   <div style={{display:'inline-block',verticalAlign:"middle",float:"right"}}>
-                    <span style={{float:"right",clear:'both'}}>{item.date} {item.start}~{item.end} {item.time}<img src={duck} style={{width:'24px',height:'24px',border:"1px solid white",borderRadius:'50%',verticalAlign:"middle",marginLeft:'10px'}}></img></span>
+                    <span style={{float:"right",clear:'both'}}>{time(item.start,item.end,item.daystart,item.dayend,item.day)}<img src={duck} style={{width:'24px',height:'24px',border:"1px solid white",borderRadius:'50%',verticalAlign:"middle",marginLeft:'10px'}}></img></span>
                   </div></div>
                 }
                 </li>

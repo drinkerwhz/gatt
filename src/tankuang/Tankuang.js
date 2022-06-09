@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-var name,timestart,timeend,daystart,dayend,ms,me
+var name,timestart,timeend,daystart,dayend,start,end
 
 function Tankuang(props) {
   const title_name=useRef()
@@ -22,7 +22,7 @@ function Tankuang(props) {
     props.open()
     props.add()
     let a=moment(props.state.mintime)
-    let b=moment(ms)
+    let b=moment(start)
     if(a-b>0){
         props.min()
     }
@@ -37,11 +37,11 @@ function Tankuang(props) {
             </div>
             <div>
                 <div>开始时间</div>
-                <input type='datetime-local' onChange={(e)=>{ms=moment(e.target.value);daystart=moment(e.target.value).day();timestart=xingqi[daystart]}} ref={title_timestart}></input>
+                <input type='datetime-local' onChange={(e)=>{start=moment(e.target.value);console.log(start);daystart=moment(e.target.value).day();timestart=xingqi[daystart]}} ref={title_timestart}></input>
             </div>
             <div>
                 <div>截止时间</div>
-                <input type='datetime-local' onChange={(e)=>{me=moment(e.target.value);dayend=moment(e.target.value).day();timeend=xingqi[dayend]}} ref={title_timeend}></input>
+                <input type='datetime-local' onChange={(e)=>{end=moment(e.target.value);dayend=moment(e.target.value).day();timeend=xingqi[dayend]}} ref={title_timeend}></input>
             </div>
             <div style={{marginTop:'410px',float:"right"}}>
                  <button style={{marginRight:'15px'}} onClick={handlejixu}>提交并继续创建</button>
@@ -75,14 +75,16 @@ const mapDispatchToProps={
                 name,
                 timestart,
                 timeend,
-                day:Math.floor((me-ms)/ (1000 * 60 * 60 * 24))+1+'天'
+                day:Math.floor((end-start)/ (1000 * 60 * 60 * 24))+1+'天',
+                start,
+                end
             }
         }
     },
     min(){
       return{
         type:"min",
-        data:ms
+        data:start
       }
     }
   }
