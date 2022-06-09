@@ -12,8 +12,12 @@ function time(start,end,xingqistart,xingqiend,count){
     }
   }else{
     if(count){
+      if(Math.abs((moment(start)-moment()))/(1000 * 60 * 60 * 24)+1>7||count>7){
+        return moment(start).format("MM/DD")+"~"+moment(end).format("MM/DD")+' '+count+'天'
+      }  
       return xingqistart+'~'+xingqiend+' '+count+'天'
     }
+    
   }
 }
 function Rengwu(props) {

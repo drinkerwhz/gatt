@@ -37,7 +37,7 @@ function Tankuang(props) {
             </div>
             <div>
                 <div>开始时间</div>
-                <input type='datetime-local' onChange={(e)=>{start=moment(e.target.value);console.log(start);daystart=moment(e.target.value).day();timestart=xingqi[daystart]}} ref={title_timestart}></input>
+                <input type='datetime-local' onChange={(e)=>{start=moment(e.target.value);daystart=moment(e.target.value).day();timestart=xingqi[daystart]}} ref={title_timestart}></input>
             </div>
             <div>
                 <div>截止时间</div>
@@ -75,7 +75,7 @@ const mapDispatchToProps={
                 name,
                 timestart,
                 timeend,
-                day:Math.floor((end-start)/ (1000 * 60 * 60 * 24))+1+'天',
+                day:Math.floor((end-start)/ (1000 * 60 * 60 * 24))+1,
                 start,
                 end
             }
