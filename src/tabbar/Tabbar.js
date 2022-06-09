@@ -9,8 +9,6 @@ function Tabbar(props) {
   const handleClick=(value)=>{
     setcurrent(value)
     a=value
-    console.log(props.change1()) 
-    console.log(props.state)
     props.change1()
   }
   const handleClick_bak=(value)=>{

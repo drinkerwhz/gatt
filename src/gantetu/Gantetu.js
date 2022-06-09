@@ -92,7 +92,7 @@ function Gantetu(props) {
           <div>{count.map(item=><span style={{width:`${moment(item).daysInMonth()*48}px`,display:'inline-block'}}>{item}</span>)}</div>
         }
         {
-          <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-6, "days").format("DD")}日{}</span>)}</div>
+          <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-4, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
       <div>  
@@ -111,6 +111,20 @@ function Gantetu(props) {
       </div>
       <div>  
       {count.map(item=>yue.map(data=><div style={{width:`${24*moment(data).daysInMonth()}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'810px',boxSizing:'border-box',borderLeft:'0px'}}></div>))}
+      </div>
+    </div>
+    }
+    {props.state.current===3&&props.state.current1===1&&<div className='title'>
+      <div className='title_time2'>
+      {
+          <div>{year.map(item=><span style={{width:`${(365-96)*24}px`,display:'inline-block'}}>{moment(item).format("YYYY")}</span>)}</div>
+        }
+        {
+          <div>{count.map(data=>yue.map(item=><span style={{width:`${24*(moment(item).daysInMonth()-8)}px`,display:'inline-block'}}>{item}月</span>))}</div>
+        }
+      </div>
+      <div>  
+      {count.map(item=>yue.map(data=><div style={{width:`${24*(moment(data).daysInMonth()-8)}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'810px',boxSizing:'border-box',borderLeft:'0px'}}></div>))}
       </div>
     </div>
     }
