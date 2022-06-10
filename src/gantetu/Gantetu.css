@@ -1,14 +1,13 @@
 .title {
   height: 926px;
   width: 100%;
-  float: left;
   white-space: nowrap;
-  overflow-x: auto;
   overflow-y: hidden;
-  border: 1px solid #c2c2c2;
   border-top: 0px;
-  box-sizing: border-box;
   color: #c2c2c2;
+  display: flex;
+  flex-direction: column;
+  flex:1;
 }
 .title_time{
   height: 50px;

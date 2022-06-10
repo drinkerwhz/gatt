@@ -1,6 +1,8 @@
 .tabbar{
     display: flex;
-    margin-top: 30px;
+    padding-top: 30px;
+    background-color: white;
+    height: 100px;
 }
 .tabbar_same{
     display: flex;

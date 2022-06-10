@@ -33,19 +33,19 @@ function Tankuang(props) {
             <h3 style={{fontWeight:'400'}}>新建记录<span style={{float:'right',cursor:'pointer'}} onClick={handleClick}>X</span></h3>
             <div>
                 <div style={{color:'rgb(61,61,61)',marginTop:"24px",fontSize:'13px'}}>名称</div>
-                <input style={{marginTop:'10px',height:'25px',width:'580px'}}  onChange={(e)=>{name=e.target.value}} ref={title_name}></input>
+                <input style={{marginTop:'10px',height:'25px',width:'550px'}}  onChange={(e)=>{name=e.target.value}} ref={title_name}></input>
             </div>
             <div>
                 <div style={{color:'rgb(61,61,61)',marginTop:"24px",fontSize:'13px'}}>开始时间</div>
-                <input style={{marginTop:'10px',height:'30px',width:'580px'}}  type='datetime-local' onChange={(e)=>{start=moment(e.target.value);daystart=moment(e.target.value).day();timestart=xingqi[daystart]}} ref={title_timestart}></input>
+                <input style={{marginTop:'10px',height:'30px',width:'550px'}}  type='datetime-local' onChange={(e)=>{start=moment(e.target.value);daystart=moment(e.target.value).day();timestart=xingqi[daystart]}} ref={title_timestart}></input>
             </div>
             <div>
                 <div style={{color:'rgb(61,61,61)',marginTop:"24px",fontSize:'13px'}}>截止时间</div>
-                <input style={{marginTop:'10px',height:'30px',width:'580px'}}  type='datetime-local' onChange={(e)=>{end=moment(e.target.value);dayend=moment(e.target.value).day();timeend=xingqi[dayend]}} ref={title_timeend}></input>
+                <input style={{marginTop:'10px',height:'30px',width:'550px'}}  type='datetime-local' onChange={(e)=>{end=moment(e.target.value);dayend=moment(e.target.value).day();timeend=xingqi[dayend]}} ref={title_timeend}></input>
             </div>
-            <div style={{marginTop:'280px',float:"right"}}>
-                 <button style={{marginRight:'15px',width:"135px",height:"36px",color:"#c2c2c2",background:"white",border:"1px solid #c2c2c2",borderRadius:"3px"}} onClick={handlejixu}>提交并继续创建</button>
-                <button style={{height:"36px",background:"rgb(0, 150, 240)",border:'0px',width:"80px",color:"white",borderRadius:"3px"}} onClick={()=>handletijiao()}>提交</button>
+            <div style={{marginTop:'260px',float:"right"}}>
+                 <button style={{marginRight:'15px',width:"135px",height:"36px",color:"#c2c2c2",background:"white",border:"1px solid #c2c2c2",borderRadius:"3px",cursor:"pointer"}} onClick={handlejixu}>提交并继续创建</button>
+                <button style={{height:"36px",background:"rgb(0, 150, 240)",border:'0px',width:"80px",color:"white",borderRadius:"3px",cursor:"pointer"}} onClick={()=>handletijiao()}>提交</button>
             </div>
            
         </div>

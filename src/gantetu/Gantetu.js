@@ -41,7 +41,7 @@ function Gantetu(props) {
     s1[y]=y
   }
   return (
-    <div style={{flex:'1',overflow:"hidden"}}>
+    <>
     {props.state.current===1&&props.state.current1===2&&<div className='title'>
       <div className='title_time'>
         <div className='title_tian'>
@@ -51,7 +51,7 @@ function Gantetu(props) {
         </div>
         <div style={{width:`${ri.length*72}px`}}>{ri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
       </div>
-      <div style={{width:`${ri.length*72}px`,height:'900px',overflowX:'hidden',overflowY:"auto"}}>  
+      <div style={{width:`${ri.length*72}px`,flex:'1',overflowX:'hidden',overflowY:"auto"}}>  
       {ri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'910px',boxSizing:'border-box'}} key={key}></div>)}
       </div>
     </div>
@@ -65,7 +65,7 @@ function Gantetu(props) {
         </div >
         <div style={{width:`${weekdayri.length*72}px`}}>{weekdayri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
       </div>
-      <div style={{width:`${weekdayri.length*72}px`,height:'900px',overflowX:'hidden',overflowY:"auto"}}>  
+      <div style={{width:`${weekdayri.length*72}px`,flex:'1',overflowX:'hidden',overflowY:"auto"}}>  
       {weekdayri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'910px',boxSizing:'border-box'}} key={key}></div>)}
       </div>
     </div>
@@ -80,7 +80,7 @@ function Gantetu(props) {
           <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-6, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
-      <div style={{width:`${zhou.length*336}px`,height:'900px',overflowX:'hidden',overflowY:"auto"}}>  
+      <div style={{width:`${zhou.length*336}px`,flex:'1',overflowX:'hidden',overflowY:"auto"}}>  
       {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'910px',boxSizing:"border-box",borderLeft:'0px'}} ></div>)}
       </div>
     </div>
@@ -95,7 +95,7 @@ function Gantetu(props) {
           <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-4, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
-      <div style={{width:`${zhou.length*336}px`,height:'900px',overflowX:'hidden',overflowY:"auto"}}>  
+      <div style={{width:`${zhou.length*336}px`,flex:'1',overflowX:'hidden',overflowY:"auto"}}>  
       {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'910px',boxSizing:"border-box",borderLeft:'0px'}} ></div>)}
       </div>
     </div>
@@ -109,7 +109,7 @@ function Gantetu(props) {
           <div>{count.map(data=>yue.map(item=><span style={{width:`${24*moment(item).daysInMonth()}px`,display:'inline-block'}}>{item}月</span>))}</div>
         }
       </div>
-      <div style={{width:`${(year.length+1)*365*24}px`,height:'900px',overflowX:'hidden',overflowY:"auto"}}>  
+      <div style={{width:`${(year.length+1)*365*24}px`,flex:'1',overflowX:'hidden',overflowY:"auto"}}>  
       {count.map(item=>yue.map(data=><div style={{width:`${24*moment(data).daysInMonth()}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'910px',boxSizing:'border-box',borderLeft:'0px'}}></div>))}
       </div>
     </div>
@@ -123,12 +123,12 @@ function Gantetu(props) {
           <div>{count.map(data=>yue.map(item=><span style={{width:`${24*(moment(item).daysInMonth()-8)}px`,display:'inline-block'}}>{item}月</span>))}</div>
         }
       </div>
-      <div style={{width:`${year.length*365*24-2750}px`,height:'900px',overflowX:'hidden',overflowY:"auto"}}>  
+      <div style={{width:`${year.length*365*24-2750}px`,flex:'1',overflowX:'hidden',overflowY:"auto"}}>  
       {count.map(item=>yue.map(data=><div style={{width:`${24*(moment(data).daysInMonth()-8)}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'910px',boxSizing:'border-box',borderLeft:'0px'}}></div>))}
       </div>
     </div>
     }
-  </div>
+  </>
   )
 }
 const mapStateToProps=(state)=>{
