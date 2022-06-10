@@ -29,11 +29,10 @@ function Rengwu(props) {
     }
   return (
     <div style={{
-        width:'400px',
-        height:"800px",
+        width:'500px',
         borderRight:"1px solid rgb(220,220,220)",
         padding:"14px",
-        float:'left'
+        height:'100%'
     }}>
         <div style={{color:"rgb(29, 129, 240)",cursor:"pointer"}}>+ <b style={{
             fontSize:"14px"

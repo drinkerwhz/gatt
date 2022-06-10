@@ -1,10 +1,9 @@
 .tab{
     background-color: white;
-    margin-bottom:10px;
+    height: 100px;
 }
 .main{
-    height: 1000px;
-    background-color: rgb(242, 245, 248);
+    flex: 1;
 }
 ul{
     padding: 0;
