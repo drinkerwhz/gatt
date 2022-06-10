@@ -1,17 +1,16 @@
 .title {
-  height: 926px;
-  width: 100%;
-  white-space: nowrap;
-  overflow-y: hidden;
   border-top: 0px;
   color: #c2c2c2;
   display: flex;
   flex-direction: column;
-  flex:1;
+  flex: 1 1;
+  overflow: hidden;
 }
 .title_time{
   height: 50px;
   border-top: 0px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .title_time .title_tian>div{
   display: inline-block;
