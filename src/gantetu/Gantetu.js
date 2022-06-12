@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Gantetu.css'
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -8,6 +8,12 @@ function Gantetu(props) {
   var ri=[],zhou=[],s1=[],yue=[],year=[],weekdayri=[],weekdayricount=[0,0,0,0,0]
   var i=0,s=0,ri1
   var xingqi=["日","一","二","三","四","五","六"]
+  const [leftlength,setleftlength]=useState(0)
+  const [leftlength1,setleftlength1]=useState(0)
+  const [leftlength2,setleftlength2]=useState(0)
+  const [leftlength3,setleftlength3]=useState(0)
+  const [leftlength4,setleftlength4]=useState(0)
+  const [leftlength5,setleftlength5]=useState(0)
   const now=moment(moment(props.state.mintime)).startOf("month").format("YYYY-MM-DD")
   for (let index = 0; index <5; index++) {
     count[i]=moment(now).subtract(-1*index, "month").format('YYYY.MM')
@@ -40,20 +46,28 @@ function Gantetu(props) {
   {
     s1[y]=y
   }
+  const handlescroll=(e)=>{
+    setleftlength(e.target.scrollLeft)
+    setleftlength1(e.target.scrollLeft)
+    setleftlength2(e.target.scrollLeft)
+    setleftlength3(e.target.scrollLeft)
+    setleftlength4(e.target.scrollLeft)
+    setleftlength5(e.target.scrollLeft)
+  }
   return (
     <>
     {props.state.current===1&&props.state.current1===2&&<div className='title'>
-      <div className='title_time'>
-        <div className='title_tian'>
+      <div className='title_time' >
+        <div className='title_tian' style={{transform:`translateX(-${leftlength}px)`}}>
         {
           count.map((item,key)=><div key={key} style={{width:`${moment(item).daysInMonth()*72}px`}}>{item}</div>)
         }
         </div>
-        <div style={{width:`${ri.length*72}px`}}>{ri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
+        <div style={{width:`${ri.length*72}px`,transform:`translateX(-${leftlength}px)`}}>{ri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
       </div>
-      <div style={{flex:'1',overflow:"scroll"}}>
+      <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
         <div style={{width:`${ri.length*72}px`,position:'relative',height:"100%"}}>  
-        {ri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',boxSizing:'border-box'}} key={key}></div>)}
+        {ri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
         <div style={{position:'absolute',top:'15px',width:'100px',background:"blue",left:"1000px"}}>111</div>
       </div>
       </div>
@@ -61,23 +75,23 @@ function Gantetu(props) {
     }
      {props.state.current===1&&props.state.current1===1&&<div className='title'>
       <div className='title_time'>
-        <div className='title_tian'>
+        <div className='title_tian' style={{transform:`translateX(-${leftlength1}px)`}}>
         {
           count.map((item,key)=><div key={key} style={{width:`${(weekdayricount[key])*72}px`}}>{item}</div>)
         }
         </div >
-        <div style={{width:`${weekdayri.length*72}px`}}>{weekdayri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
+        <div style={{width:`${weekdayri.length*72}px`,transform:`translateX(-${leftlength1}px)`}}>{weekdayri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
       </div>
-     <div style={{flex:'1',overflow:"scroll"}}>
+     <div style={{flex:'1',overflow:"scroll" }} onScroll={handlescroll}>
       <div style={{width:`${weekdayri.length*72}px`,height:'100%'}}>  
-        {weekdayri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',boxSizing:'border-box'}} key={key}></div>)}
+        {weekdayri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
         </div>
      </div>
     </div>
     }
     {
       props.state.current===2&&props.state.current1===2&&<div className='title'>
-      <div className='title_time1' style={{width:`${zhou.length*336}px`,whiteSpace:'nowrap'}}>
+      <div className='title_time1' style={{width:`${zhou.length*336}px`,whiteSpace:'nowrap',transform:`translateX(-${leftlength2}px)`}}>
         {
           <div>{count.map(item=><span style={{width:`${moment(item).daysInMonth()*48}px`,display:'inline-block'}}>{item}</span>)}</div>
         }
@@ -85,16 +99,16 @@ function Gantetu(props) {
           <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-6, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
-      <div style={{flex:'1',overflow:"scroll"}}>
+      <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
         <div style={{width:`${zhou.length*336}px`,height:"100%"}}>  
-        {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',boxSizing:"border-box",borderLeft:'0px'}} ></div>)}
+        {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} ></div>)}
         </div>
       </div>
     </div>
     }
     {
       props.state.current===2&&props.state.current1===1&&<div className='title'>
-      <div className='title_time1' style={{width:`${zhou.length*336}px,`,whiteSpace:'nowrap'}}>
+      <div className='title_time1' style={{width:`${zhou.length*336}px,`,whiteSpace:'nowrap',transform:`translateX(-${leftlength3}px)`}}>
         {
           <div>{count.map(item=><span style={{width:`${moment(item).daysInMonth()*48}px`,display:'inline-block'}}>{item}</span>)}</div>
         }
@@ -102,15 +116,15 @@ function Gantetu(props) {
           <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-4, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
-      <div style={{flex:'1',overflow:"scroll"}}>
+      <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
         <div style={{width:`${zhou.length*336}px`,height:'100%'}}>  
-        {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',boxSizing:"border-box",borderLeft:'0px'}} ></div>)}
+        {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} ></div>)}
         </div>
       </div>
     </div>
     }
      {props.state.current===3&&props.state.current1===2&&<div className='title'>
-      <div className='title_time2' style={{width:`${year.length*365*24}px`,whiteSpace:'nowrap'}}>
+      <div className='title_time2' style={{width:`${year.length*365*24}px`,whiteSpace:'nowrap',transform:`translateX(-${leftlength4}px)`}}>
       {
           <div>{year.map(item=><span style={{width:`${365*24}px`,display:'inline-block'}}>{moment(item).format("YYYY")}</span>)}</div>
         }
@@ -118,15 +132,15 @@ function Gantetu(props) {
           <div>{count.map(data=>yue.map(item=><span style={{width:`${24*moment(item).daysInMonth()}px`,display:'inline-block'}}>{item}月</span>))}</div>
         }
       </div>
-     <div style={{flex:'1',overflow:"scroll"}}>
+     <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
       <div style={{width:`${(year.length+1)*365*24}px`,height:'100%'}}>  
-        {count.map(item=>yue.map(data=><div style={{width:`${24*moment(data).daysInMonth()}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',boxSizing:'border-box',borderLeft:'0px'}}></div>))}
+        {count.map(item=>yue.map(data=><div style={{width:`${24*moment(data).daysInMonth()}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}}></div>))}
         </div>
      </div>
     </div>
     }
     {props.state.current===3&&props.state.current1===1&&<div className='title'>
-      <div className='title_time2' style={{width:`${year.length*(365-96)*24}px`,whiteSpace:'nowrap'}}>
+      <div className='title_time2' style={{width:`${year.length*(365-96)*24}px`,whiteSpace:'nowrap',transform:`translateX(-${leftlength5}px)`}}>
       {
           <div>{year.map(item=><span style={{width:`${(365-96)*24}px`,display:'inline-block'}}>{moment(item).format("YYYY")}</span>)}</div>
         }
@@ -134,9 +148,9 @@ function Gantetu(props) {
           <div>{count.map(data=>yue.map(item=><span style={{width:`${24*(moment(item).daysInMonth()-8)}px`,display:'inline-block'}}>{item}月</span>))}</div>
         }
       </div>
-      <div style={{flex:'1',overflow:"scroll"}}>
+      <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
         <div style={{width:`${year.length*365*24-2750}px`,height:'100%'}}>  
-        {count.map(item=>yue.map(data=><div style={{width:`${24*(moment(data).daysInMonth()-8)}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',boxSizing:'border-box',borderLeft:'0px'}}></div>))}
+        {count.map(item=>yue.map(data=><div style={{width:`${24*(moment(data).daysInMonth()-8)}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}}></div>))}
         </div>
       </div>
     </div>

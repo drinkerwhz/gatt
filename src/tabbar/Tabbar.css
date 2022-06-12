@@ -2,7 +2,7 @@
     display: flex;
     padding-top: 30px;
     background-color: white;
-    height: 100px;
+    height:60px;
 }
 .tabbar_same{
     display: flex;
@@ -17,7 +17,6 @@
     width: 189px;
 }
 .tabbar_same div{
-    box-sizing: border-box;
     text-align: center;
     width: 63px;
     font-size: 12px;
