@@ -60,9 +60,9 @@ function Gantetu(props) {
     {
        weekdaynow=moment(now).subtract(-2, "days").format('YYYY.MM.DD')
     }
-    zhou[x]=moment(weekdaynow).subtract(-1*x, "week").format('YYYY.MM.DD')
+    zhou[x]=moment(now).subtract(-1*x, "week").format('YYYY.MM.DD')
+    zhouweekday[x]=moment(weekdaynow).subtract(-1*x, "week").format('YYYY.MM.DD')
   }
-  console.log(zhouweekday);
   for(let y=0;y<7;y++)
   {
     s1[y]=y
@@ -139,12 +139,12 @@ function Gantetu(props) {
           <div>{count.map(item=><span style={{width:`${moment(item).daysInMonth()*35}px`,display:'inline-block'}}>{item}</span>)}</div>
         }
         {
-          <div>{zhou.map(data=><span style={{width:`240px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-4, "days").format("DD")}日{}</span>)}</div>
+          <div>{zhouweekday.map(data=><span style={{width:`240px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-4, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
       <div style={{flex:'1',overflow:"scroll",position:'relative'}} onScroll={handlescroll}>
         <div style={{width:`${zhou.length*240}px`,height:'100%'}}>  
-        {zhou.map(data=><div style={{width:'240px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} ></div>)}
+        {zhouweekday.map(data=><div style={{width:'240px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} ></div>)}
         {
            props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*2}px`,height:'18px',background:'blue',left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60-weekend(moment(props.state.mintime).startOf("month"),moment(item.start))*24)*2}px`,top:`${15+40*key}px`}}></div>)
         }
