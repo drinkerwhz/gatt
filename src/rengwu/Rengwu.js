@@ -48,11 +48,11 @@ function Rengwu(props) {
                   {item.main}
                   </div>
                   <div style={{display:'inline-block',verticalAlign:"middle",float:"right"}}>
-                    <span style={{float:"right",clear:'both'}}>{item.date}{item.start}~{item.end} {item.time}<img src={duck} style={{width:'24px',height:'24px',border:"1px solid white",borderRadius:'50%',verticalAlign:"middle",marginLeft:'10px'}}></img></span>
+                    <span style={{float:"right",clear:'both'}}>{time(item.start,item.end,item.daystart,item.dayend,item.day)}<img src={duck} style={{width:'24px',height:'24px',border:"1px solid white",borderRadius:'50%',verticalAlign:"middle",marginLeft:'10px'}}></img></span>
                   </div>
                   <div className={props.state.iskong===true?"kong":""}>
                     <ul>
-                      {item.children.map((data,key)=><li key={key} style={{marginLeft:'28px',marginTop:"20px"}}><i style={{color:'#c2c2c2',marginRight:'10px'}}>●</i><span style={{color:'#c2c2c2',marginRight:'8px'}}>{key1+1}.{key+1})</span>{data.main}<img src={duck} style={{width:'24px',height:'24px',border:"1px solid white",borderRadius:'50%',verticalAlign:"middle",marginLeft:'10px',float:"right"}}></img><span style={{float:"right"}}>{data.date} {data.start}~{data.end} {data.time}</span></li>)}
+                      {item.children.map((data,key)=><li key={key} style={{marginLeft:'28px',marginTop:"20px"}}><i style={{color:'#c2c2c2',marginRight:'10px'}}>●</i><span style={{color:'#c2c2c2',marginRight:'8px'}}>{key1+1}.{key+1})</span>{data.main}<img src={duck} style={{width:'24px',height:'24px',border:"1px solid white",borderRadius:'50%',verticalAlign:"middle",marginLeft:'10px',float:"right"}}></img><span style={{float:"right"}}>{time(data.start,data.end,data.daystart,data.dayend,data.day)}</span></li>)}
                     </ul>
                   </div>
                   </div>:<div><div style={{display:'inline-block'}}><i style={{color:'#c2c2c2',marginRight:'10px'}}>●</i><span style={{color:'#c2c2c2',marginRight:'8px'}}>{key1+1})</span>

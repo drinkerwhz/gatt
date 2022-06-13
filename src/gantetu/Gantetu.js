@@ -3,9 +3,22 @@ import './Gantetu.css'
 import moment from 'moment';
 import { connect } from 'react-redux';
 
+function weekend(a,b){
+  let x=(b-a)/1000/60/60/24
+  var s=0
+  for(let i=0;i<x;i++)
+  {
+    let y=moment(a).subtract(-1*i,'days').format("YYYY-MM-DD")
+    if(moment(y).day()===0||moment(y).day()===6){
+      s++
+    }
+  }
+  return s
+}
+
 function Gantetu(props) {
   var count=[]
-  var ri=[],zhou=[],s1=[],yue=[],year=[],weekdayri=[],weekdayricount=[0,0,0,0,0]
+  var ri=[],zhou=[],s1=[],yue=[],year=[],weekdayri=[],weekdayricount=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   var i=0,s=0,ri1
   var xingqi=["日","一","二","三","四","五","六"]
   const [leftlength,setleftlength]=useState(0)
@@ -15,7 +28,7 @@ function Gantetu(props) {
   const [leftlength4,setleftlength4]=useState(0)
   const [leftlength5,setleftlength5]=useState(0)
   const now=moment(moment(props.state.mintime)).startOf("month").format("YYYY-MM-DD")
-  for (let index = 0; index <5; index++) {
+  for (let index = 0; index <10; index++) {
     count[i]=moment(now).subtract(-1*index, "month").format('YYYY.MM')
     s=s+moment(count[i]).daysInMonth()
     for(let x=0;x<moment(count[i]).daysInMonth();x++){
@@ -68,7 +81,7 @@ function Gantetu(props) {
       <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
         <div style={{width:`${ri.length*72}px`,position:'relative',height:"100%"}}>  
         {ri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
-        <div style={{position:'absolute',top:'15px',width:'100px',background:"blue",left:"1000px"}}>111</div>
+        {props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*3}px`,height:'18px',borderRadius:"510px",background:"blue",left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 ))*3}px`}}></div>)}
       </div>
       </div>
     </div>
@@ -83,8 +96,9 @@ function Gantetu(props) {
         <div style={{width:`${weekdayri.length*72}px`,transform:`translateX(-${leftlength1}px)`}}>{weekdayri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
       </div>
      <div style={{flex:'1',overflow:"scroll" }} onScroll={handlescroll}>
-      <div style={{width:`${weekdayri.length*72}px`,height:'100%'}}>  
+      <div style={{width:`${weekdayri.length*72}px`,height:'100%',position:'relative',}}>  
         {weekdayri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
+        {props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*3}px`,height:'18px',borderRadius:"510px",background:"blue",left:`${((moment(item.start)-moment(props.state.mintime).startOf("month")-weekend(moment(props.state.mintime),moment(item.start)))/(1000 * 60 * 60 *24))*72}px`}}></div>)}
         </div>
      </div>
     </div>

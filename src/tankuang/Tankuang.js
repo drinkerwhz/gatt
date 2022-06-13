@@ -28,8 +28,8 @@ function Tankuang(props) {
     }
   }
   return (
-    <div style={{backgroundColor:'rgb(61,61,61)',height:'1000px',paddingTop:'50px'}}>
-        <div style={{background:'white',width:'600px',height:'600px',margin:'0 auto',borderRadius:'8px',padding:'20px'}}>
+    <div style={{backgroundColor:'rgb(61,61,61)',height:'100%'}}>
+        <div style={{background:'white',width:'600px',height:'600px',margin:'0 auto',borderRadius:'8px',padding:'20px',transform: 'translateY(20%)'}}>
             <h3 style={{fontWeight:'400'}}>新建记录<span style={{float:'right',cursor:'pointer'}} onClick={handleClick}>X</span></h3>
             <div>
                 <div style={{color:'rgb(61,61,61)',marginTop:"24px",fontSize:'13px'}}>名称</div>

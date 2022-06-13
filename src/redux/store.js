@@ -5,7 +5,6 @@ const reducer=(preState={
     List:[
         {
             main:"产品设计吖吖",
-            date:"今天",
             start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
             end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
             day:1,
@@ -14,7 +13,6 @@ const reducer=(preState={
         },
         {
             main:"需求调研需求调研需求",
-            date:"周三",
             start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
             end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
             day:1,
@@ -24,29 +22,29 @@ const reducer=(preState={
         {
             main:"场景分析场景分析",
             day:2,
-            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
-            end:moment('2022-06-11 18:00').format("YYYY-MM-DD HH:mm"),
+            start:moment('2022-06-10 00:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-11 24:00').format("YYYY-MM-DD HH:mm"),
             daystart:"周五",
             dayend:"周六",
 
         },
         {
             main:'路径设计设计',
-            time:'5天',
-            start:"1/27",
-            end:"1/31",
+            day:5,
+            start:moment('2022-01-27 00:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-01-31 00:00').format("YYYY-MM-DD HH:mm"),
             children:[
                 {
                     main:'需求调研设计',
-                    time:'2天',
-                    start:"1/27",
-                    end:"1/28",
+                    day:2,
+                    start:moment('2022-01-27 00:00').format("YYYY-MM-DD HH:mm"),
+                    end:moment('2022-01-28 00:00').format("YYYY-MM-DD HH:mm"),
                 },
                 {
                     main:'设计吖吖',
-                    time:'3天',
-                    start:"1/29",
-                    end:"1/31",
+                    day:3,
+                    start:moment('2022-01-29 00:00').format("YYYY-MM-DD HH:mm"),
+                    end:moment('2022-01-31 00:00').format("YYYY-MM-DD HH:mm"),
                 },  
             ]
         },
