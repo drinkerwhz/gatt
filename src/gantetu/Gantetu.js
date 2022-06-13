@@ -18,7 +18,7 @@ function weekend(a,b){
 
 function Gantetu(props) {
   var count=[]
-  var ri=[],zhou=[],s1=[],yue=[],year=[],weekdayri=[],weekdayricount=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+  var ri=[],zhou=[],s1=[],yue=[],year=[],weekdayri=[],weekdayricount=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],zhouweekday=[]
   var i=0,s=0,ri1
   var xingqi=["日","一","二","三","四","五","六"]
   const [leftlength,setleftlength]=useState(0)
@@ -52,9 +52,17 @@ function Gantetu(props) {
     }
   }
   for(let x=0;Math.floor(x<s/8);x++){
-    zhou[x]=moment(now).subtract(-1*x, "week").format('YYYY.MM.DD')
- 
+    if(moment(now).day()===0)
+    {
+      var weekdaynow=moment(now).subtract(-1, "days").format('YYYY.MM.DD')
+    }
+    if(moment(now).day()===6)
+    {
+       weekdaynow=moment(now).subtract(-2, "days").format('YYYY.MM.DD')
+    }
+    zhou[x]=moment(weekdaynow).subtract(-1*x, "week").format('YYYY.MM.DD')
   }
+  console.log(zhouweekday);
   for(let y=0;y<7;y++)
   {
     s1[y]=y
@@ -81,7 +89,7 @@ function Gantetu(props) {
       <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
         <div style={{width:`${ri.length*72}px`,position:'relative',height:"100%"}}>  
         {ri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
-        {props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*3}px`,height:'18px',borderRadius:"510px",background:"blue",left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 ))*3}px`}}></div>)}
+        {props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*3}px`,height:'18px',borderRadius:"10px",background:"blue",left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 ))*3}px`}}></div>)}
       </div>
       </div>
     </div>
@@ -98,7 +106,7 @@ function Gantetu(props) {
      <div style={{flex:'1',overflow:"scroll" }} onScroll={handlescroll}>
       <div style={{width:`${weekdayri.length*72}px`,height:'100%',position:'relative',}}>  
         {weekdayri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
-        {props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*3}px`,height:'18px',borderRadius:"510px",background:"blue",left:`${((moment(item.start)-moment(props.state.mintime).startOf("month")-weekend(moment(props.state.mintime),moment(item.start)))/(1000 * 60 * 60 *24))*72}px`}}></div>)}
+        {props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*3}px`,height:'18px',borderRadius:"10px",background:"blue",left:`${(((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 *24))-weekend(moment(props.state.mintime).startOf("month"),(moment(item.start))))*72}px`}}></div>)}
         </div>
      </div>
     </div>
@@ -113,26 +121,33 @@ function Gantetu(props) {
           <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-6, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
-      <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
+      <div style={{flex:'1',overflow:"scroll",position:'relative'}} onScroll={handlescroll}>
         <div style={{width:`${zhou.length*336}px`,height:"100%"}}>  
-        {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} ></div>)}
+        {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} 
+        ></div>)}
+        {
+          props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60*2}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60*2}px`,top:`${15+40*key}px`}}></div>)
+        }
         </div>
       </div>
     </div>
     }
     {
       props.state.current===2&&props.state.current1===1&&<div className='title'>
-      <div className='title_time1' style={{width:`${zhou.length*336}px,`,whiteSpace:'nowrap',transform:`translateX(-${leftlength3}px)`}}>
+      <div className='title_time1' style={{width:`${zhou.length*240}px,`,whiteSpace:'nowrap',transform:`translateX(-${leftlength3}px)`}}>
         {
-          <div>{count.map(item=><span style={{width:`${moment(item).daysInMonth()*48}px`,display:'inline-block'}}>{item}</span>)}</div>
+          <div>{count.map(item=><span style={{width:`${moment(item).daysInMonth()*35}px`,display:'inline-block'}}>{item}</span>)}</div>
         }
         {
-          <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-4, "days").format("DD")}日{}</span>)}</div>
+          <div>{zhou.map(data=><span style={{width:`240px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-4, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
-      <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
-        <div style={{width:`${zhou.length*336}px`,height:'100%'}}>  
-        {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} ></div>)}
+      <div style={{flex:'1',overflow:"scroll",position:'relative'}} onScroll={handlescroll}>
+        <div style={{width:`${zhou.length*240}px`,height:'100%'}}>  
+        {zhou.map(data=><div style={{width:'240px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} ></div>)}
+        {
+           props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*2}px`,height:'18px',background:'blue',left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60-weekend(moment(props.state.mintime).startOf("month"),moment(item.start))*24)*2}px`,top:`${15+40*key}px`}}></div>)
+        }
         </div>
       </div>
     </div>

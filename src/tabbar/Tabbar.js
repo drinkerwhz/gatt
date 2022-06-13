@@ -5,7 +5,7 @@ var a,b
 
 function Tabbar(props) {
   const [current,setcurrent]=useState(1)
-  const [current1,setcurrent1]=useState(1)
+  const [current1,setcurrent1]=useState(2)
   const handleClick=(value)=>{
     setcurrent(value)
     a=value
