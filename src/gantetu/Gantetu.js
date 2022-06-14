@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 function Gantetu(props) {
   function weekend(a,b){
-    let x=parseInt((b-a)/1000/60/60/24%7)
+    let x=parseInt((b-a)/1000/60/60/24+1)-parseInt((b-a)/1000/60/60/24/7)*7
     let z=parseInt((b-a)/1000/60/60/24/7)
     var s=0
     for(let i=0;i<x;i++)
@@ -48,7 +48,7 @@ function Gantetu(props) {
   for(let index=0;index<10;index++){
     year[index]=moment(now).subtract(-1*index, "year").format('YYYY.MM')
     for(let i=0;i<12;i++){
-      yue[i]=moment(now).subtract(-1*i, "month").format('MM')
+      yue[i]=moment(now).subtract(-1*i, "month").format('YYYY.MM.DD')
     }
   }
   for(let x=0;Math.floor(x<s/8);x++){
@@ -128,6 +128,9 @@ function Gantetu(props) {
         {
           props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60*2}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60*2}px`,top:`${15+40*key}px`}}></div>)
         }
+        {
+          <div style={{position:'absolute',width:'48px',height:'100%',backgroundColor:'#2196f3',opacity:'10%',left:`${(Math.floor((moment()-moment(now))/1000/60/60))*2-48}px`,top:'0'}}></div>
+        }
         </div>
       </div>
     </div>
@@ -148,6 +151,9 @@ function Gantetu(props) {
         {
            props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*2}px`,height:'18px',background:'blue',left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60-weekend(moment(props.state.mintime).startOf("month"),moment(item.start))*24)*2}px`,top:`${15+40*key}px`}}></div>)
         }
+        {
+          <div style={{position:'absolute',width:'48px',height:'100%',backgroundColor:'#2196f3',opacity:'10%',left:`${(Math.floor((moment()-moment(now))/1000/60/60)-weekend(moment(now),moment())*24)*2}px`,top:'0'}}></div>
+        }
         </div>
       </div>
     </div>
@@ -158,7 +164,7 @@ function Gantetu(props) {
           <div>{year.map(item=><span style={{width:`${365*24}px`,display:'inline-block'}}>{moment(item).format("YYYY")}</span>)}</div>
         }
         {
-          <div>{count.map(data=>yue.map(item=><span style={{width:`${24*moment(item).daysInMonth()}px`,display:'inline-block'}}>{item}月</span>))}</div>
+          <div>{count.map(data=>yue.map(item=><span style={{width:`${24*moment(item).daysInMonth()}px`,display:'inline-block'}}>{moment(item).format("MM")}月</span>))}</div>
         }
       </div>
      <div style={{flex:'1',overflow:"scroll",position:'relative'}} onScroll={handlescroll}>
@@ -167,24 +173,30 @@ function Gantetu(props) {
         {
           props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60}px`,top:`${15+40*key}px`}}></div>)
         }
+        {
+          <div style={{position:'absolute',width:'24px',height:'100%',backgroundColor:'#2196f3',opacity:'10%',left:`${(Math.floor((moment()-moment(now))/1000/60/60))}px`,top:'0'}}></div>
+        }
         </div>
      </div>
     </div>
     }
     {props.state.current===3&&props.state.current1===1&&<div className='title'>
-      <div className='title_time2' style={{width:`${year.length*(365-96)*24}px`,whiteSpace:'nowrap',transform:`translateX(-${leftlength5}px)`}}>
+      <div className='title_time2' style={{whiteSpace:'nowrap',transform:`translateX(-${leftlength5}px)`}}>
       {
-          <div>{year.map(item=><span style={{width:`${(365-96)*24}px`,display:'inline-block'}}>{moment(item).format("YYYY")}</span>)}</div>
+          <div>{year.map(item=><span style={{width:`${(365-weekend(moment(item).startOf("year"),moment(item).endOf("year")))*24}px`,display:'inline-block'}}>{moment(item).format("YYYY")}</span>)}</div>
         }
         {
-          <div>{count.map(data=>yue.map(item=><span style={{width:`${24*(moment(item).daysInMonth()-8)}px`,display:'inline-block'}}>{item}月</span>))}</div>
+          <div>{count.map(data=>yue.map(item=><span style={{width:`${24*(moment(item).daysInMonth()-weekend(moment(item).startOf("month"),moment(item).endOf("month")))}px`,display:'inline-block'}}>{moment(item).format('MM')}月</span>))}</div>
         }
       </div>
       <div style={{flex:'1',overflow:"scroll",position:'relative'}} onScroll={handlescroll}>
-        <div style={{width:`${year.length*365*24-2750}px`,height:'100%'}}>  
-        {count.map(item=>yue.map(data=><div style={{width:`${24*(moment(data).daysInMonth()-8)}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}}></div>))}
+        <div style={{width:`${year.length*(365-96)*24}px`,height:'100%'}}>  
+        {count.map(item=>yue.map(data=><div style={{width:`${24*(moment(data).daysInMonth()-weekend(moment(data).startOf("month"),moment(data).endOf("month")))}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}}>{weekend(moment(data).startOf("month"),moment(data).endOf("month"))}</div>))}
         {
           props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(now))/1000/60/60-weekend(moment(now),moment(item.start))*24}px`,top:`${15+40*key}px`}}></div>)
+        }
+         {
+          <div style={{position:'absolute',width:'24px',height:'100%',backgroundColor:'#2196f3',opacity:'10%',left:`${((moment()-moment(now))/1000/60/60)-(weekend(moment(now),moment())*24)}px`,top:'0'}}></div>
         }
         </div>
       </div>
