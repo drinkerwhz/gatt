@@ -12,19 +12,31 @@ function Tankuang(props) {
     props.open()
   }
   const handlejixu=()=>{
-    title_name.current.value=''
-    title_timestart.current.value=null
-    title_timeend.current.value=null
-    props.jixu()
-    props.add()
+    if(title_name.current.value==='')
+    {
+      alert("内容不能为空");
+    }
+    else{
+      title_name.current.value=''
+      title_timestart.current.value=null
+      title_timeend.current.value=null
+      props.jixu()
+      props.add()
+    }
   }
   const handletijiao=()=>{
-    props.open()
-    props.add()
-    let a=moment(props.state.mintime)
-    let b=moment(start)
-    if(a-b>0){
-        props.min()
+    if(title_name.current.value==='')
+    {
+      alert("内容不能为空");
+    }
+    else{
+      props.open()
+      props.add()
+      let a=moment(props.state.mintime)
+      let b=moment(start)
+      if(a-b>0){
+          props.min()
+      }
     }
   }
   return (

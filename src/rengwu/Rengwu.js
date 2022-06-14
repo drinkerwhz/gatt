@@ -6,16 +6,34 @@ import moment from 'moment'
 function time(start,end,xingqistart,xingqiend,count){
   if(moment(start).format("YYYY-MM-DD")===moment(end).format("YYYY-MM-DD")){
     if(moment(start).format("YYYY-MM-DD")===moment().format("YYYY-MM-DD")){
-      return '今天 '+moment(start).format("hh:mm")+'~'+moment(end).format("HH:mm")
+      return '今天 '+moment(start).format("HH:mm")+'~'+moment(end).format("HH:mm")
     }else{
-      return xingqistart+' '+moment(start).format("hh:mm")+'~'+moment(end).format("HH:mm")
+      if((moment()-moment(start)<0&&Math.abs(moment().diff(moment(start),'days'))>7-moment().day())||(moment()-moment(start)>0&&moment().diff(moment(start),'days')>moment().day()-1)){
+          return moment(start).format("MM/DD")+" "+moment(start).format("HH:mm")+'~'+moment(end).format("HH:mm")
+      }
+      else{
+        return xingqistart+' '+moment(start).format("HH:mm")+'~'+moment(end).format("HH:mm")
+      }
     }
   }else{
     if(count){
-      if(Math.abs((moment(start)-moment()))/(1000 * 60 * 60 * 24)+1>7||count>7){
-        return moment(start).format("MM/DD")+"~"+moment(end).format("MM/DD")+' '+count+'天'
-      }  
-      return xingqistart+'~'+xingqiend+' '+count+'天'
+      if(count<7&&((Math.abs(moment().diff(moment(start),'days'))<6-moment().day()&&moment()-moment(start)<0)||(moment().diff(moment(start),'days')<moment().day()&&moment()-moment(start)>0))&&((moment(start).day()===0?moment(start).day()+7:moment(start).day())<(moment(end).day()===0?moment(end).day()+7:moment(end).day()))){
+        if(moment(start).format("HH:mm")===moment('2022-01-01 00:00').format("HH:mm")&&moment(end).format("HH:mm")===moment('2022-01-01 00:00').format("HH:mm")){
+          return xingqistart+'~'+xingqiend+' '+count+'天'
+        }
+        else{
+          return xingqistart+" "+moment(start).format("HH:mm")+'~'+xingqiend+" "+moment(end).format("HH:mm")
+        }
+      } 
+      else{
+        if(moment(start).format("HH:mm")===moment('2022-01-01 00:00').format("HH:mm")&&moment(end).format("HH:mm")===moment('2022-01-01 00:00').format("HH:mm")){
+          return moment(start).format("MM/DD")+"~"+moment(end).format("MM/DD")+' '+count+'天'
+        }
+        else{
+          return moment(start).format("MM/DD HH:mm")+"~"+moment(end).format("MM/DD HH:mm")
+        }
+      } 
+ 
     }
     
   }
