@@ -51,7 +51,7 @@ const reducer=(preState={
     ],
     iskong:true,
     current:1,
-    current1:1,
+    current1:2,
     mintime:"2022-01-27",
     maxtime:"2023-01-27"
 },action)=>{

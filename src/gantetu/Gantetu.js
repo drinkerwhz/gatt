@@ -3,20 +3,20 @@ import './Gantetu.css'
 import moment from 'moment';
 import { connect } from 'react-redux';
 
-function weekend(a,b){
-  let x=(b-a)/1000/60/60/24
-  var s=0
-  for(let i=0;i<x;i++)
-  {
-    let y=moment(a).subtract(-1*i,'days').format("YYYY-MM-DD")
-    if(moment(y).day()===0||moment(y).day()===6){
-      s++
-    }
-  }
-  return s
-}
-
 function Gantetu(props) {
+  function weekend(a,b){
+    let x=parseInt((b-a)/1000/60/60/24%7)
+    let z=parseInt((b-a)/1000/60/60/24/7)
+    var s=0
+    for(let i=0;i<x;i++)
+    {
+      let y=moment(a).subtract(-1*i,'days').format("YYYY-MM-DD")
+      if(moment(y).day()===0||moment(y).day()===6){
+        s++
+      }
+    }
+    return s+z*2
+  }
   var count=[]
   var ri=[],zhou=[],s1=[],yue=[],year=[],weekdayri=[],weekdayricount=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],zhouweekday=[]
   var i=0,s=0,ri1
@@ -45,7 +45,7 @@ function Gantetu(props) {
       weekdayri.push(ri[x])
     }
   }
-  for(let index=0;index<4;index++){
+  for(let index=0;index<10;index++){
     year[index]=moment(now).subtract(-1*index, "year").format('YYYY.MM')
     for(let i=0;i<12;i++){
       yue[i]=moment(now).subtract(-1*i, "month").format('MM')
@@ -88,7 +88,7 @@ function Gantetu(props) {
       </div>
       <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
         <div style={{width:`${ri.length*72}px`,position:'relative',height:"100%"}}>  
-        {ri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
+        {ri.map((item,key)=><div className={moment().diff(moment(props.state.mintime).startOf("month"),'days')===key?'today':''} style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
         {props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*3}px`,height:'18px',borderRadius:"10px",background:"blue",left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 ))*3}px`}}></div>)}
       </div>
       </div>
@@ -105,7 +105,7 @@ function Gantetu(props) {
       </div>
      <div style={{flex:'1',overflow:"scroll" }} onScroll={handlescroll}>
       <div style={{width:`${weekdayri.length*72}px`,height:'100%',position:'relative',}}>  
-        {weekdayri.map((item,key)=><div style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
+        {weekdayri.map((item,key)=><div className={moment().diff(moment(props.state.mintime).startOf("month"),'days')===key+weekend(moment(props.state.mintime).startOf("month"),moment())?'today':''} style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
         {props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*3}px`,height:'18px',borderRadius:"10px",background:"blue",left:`${(((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 *24))-weekend(moment(props.state.mintime).startOf("month"),(moment(item.start))))*72}px`}}></div>)}
         </div>
      </div>
@@ -161,9 +161,12 @@ function Gantetu(props) {
           <div>{count.map(data=>yue.map(item=><span style={{width:`${24*moment(item).daysInMonth()}px`,display:'inline-block'}}>{item}月</span>))}</div>
         }
       </div>
-     <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
+     <div style={{flex:'1',overflow:"scroll",position:'relative'}} onScroll={handlescroll}>
       <div style={{width:`${(year.length+1)*365*24}px`,height:'100%'}}>  
         {count.map(item=>yue.map(data=><div style={{width:`${24*moment(data).daysInMonth()}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}}></div>))}
+        {
+          props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60}px`,top:`${15+40*key}px`}}></div>)
+        }
         </div>
      </div>
     </div>
@@ -177,9 +180,12 @@ function Gantetu(props) {
           <div>{count.map(data=>yue.map(item=><span style={{width:`${24*(moment(item).daysInMonth()-8)}px`,display:'inline-block'}}>{item}月</span>))}</div>
         }
       </div>
-      <div style={{flex:'1',overflow:"scroll"}} onScroll={handlescroll}>
+      <div style={{flex:'1',overflow:"scroll",position:'relative'}} onScroll={handlescroll}>
         <div style={{width:`${year.length*365*24-2750}px`,height:'100%'}}>  
         {count.map(item=>yue.map(data=><div style={{width:`${24*(moment(data).daysInMonth()-8)}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}}></div>))}
+        {
+          props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(now))/1000/60/60-weekend(moment(now),moment(item.start))*24}px`,top:`${15+40*key}px`}}></div>)
+        }
         </div>
       </div>
     </div>
