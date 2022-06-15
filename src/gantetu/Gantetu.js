@@ -118,18 +118,18 @@ function Gantetu(props) {
           <div>{count.map(item=><span style={{width:`${moment(item).daysInMonth()*48}px`,display:'inline-block'}}>{item}</span>)}</div>
         }
         {
-          <div>{zhou.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-6, "days").format("DD")}日{}</span>)}</div>
+          <div>{zhouweekday.map(data=><span style={{width:`336px`,display:'inline-block'}}>{moment(data).format("DD")}～{moment(data).subtract(-6, "days").format("DD")}日{}</span>)}</div>
         }
       </div>
       <div style={{flex:'1',overflow:"scroll",position:'relative'}} onScroll={handlescroll}>
         <div style={{width:`${zhou.length*336}px`,height:"100%"}}>  
-        {zhou.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} 
+        {zhouweekday.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} 
         ></div>)}
         {
           props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60*2}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60*2}px`,top:`${15+40*key}px`}}></div>)
         }
         {
-          <div style={{position:'absolute',width:'48px',height:'100%',backgroundColor:'#2196f3',opacity:'10%',left:`${(Math.floor((moment()-moment(now))/1000/60/60))*2-48}px`,top:'0'}}></div>
+          <div style={{position:'absolute',width:'48px',height:'100%',backgroundColor:'#2196f3',opacity:'10%',left:`${moment().diff(moment(weekdaynow),'days')*48}px`,top:'0'}}></div>
         }
         </div>
       </div>
@@ -152,7 +152,7 @@ function Gantetu(props) {
            props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*2}px`,height:'18px',background:'blue',left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60-weekend(moment(props.state.mintime).startOf("month"),moment(item.start))*24)*2}px`,top:`${15+40*key}px`}}></div>)
         }
         {
-          <div style={{position:'absolute',width:'48px',height:'100%',backgroundColor:'#2196f3',opacity:'10%',left:`${(Math.floor((moment()-moment(now))/1000/60/60)-weekend(moment(now),moment())*24)*2}px`,top:'0'}}></div>
+          <div style={{position:'absolute',width:'48px',height:'100%',backgroundColor:'#2196f3',opacity:'10%',left:`${((moment().diff(moment(now),'days'))-weekend(moment(now),moment()))*48}px`,top:'0'}}>{moment().diff(moment(now),'days')}</div>
         }
         </div>
       </div>
