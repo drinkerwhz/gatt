@@ -145,8 +145,8 @@ function Gantetu(props) {
         </div >
         <div className='di' style={{width:`${weekdayri.length*72}px`}}>{weekdayri.map(data=><span style={{width:'72px',display:'inline-block'}}>{moment(data).format('DD')}{xingqi[moment(data).day()]}</span>)}</div>
       </div>
-     <div style={{flex:'1',overflow:"scroll"}} className='qwe1'>
-      <div style={{width:`${weekdayri.length*72}px`,height:'100%',position:'relative',}}>  
+     <div style={{flex:'1',overflow:"scroll",position:'relative'}} className='qwe1'>
+      <div style={{width:`${weekdayri.length*72}px`,height:`${props.state.List.length*500}px`,position:'absolute',}}>  
         {weekdayri.map((item,key)=><div className={moment().diff(moment(props.state.mintime).startOf("month"),'days')===key+weekend(moment(props.state.mintime).startOf("month"),moment())?'today':''} style={{width:'72px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%'}} key={key}></div>)}
         
         {props.state.iskong?props.state.List.map((item,key)=><div style={{position:'absolute',top:`${40*key+15}px`,width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*3}px`,height:'18px',borderRadius:"10px",background:"blue",left:`${(((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 *24))-weekend(moment(props.state.mintime).startOf("month"),(moment(item.start))))*72}px`}}></div>):props.state.List.map((item,key)=>item.children?<div style={{position:'absolute',top:`${40*key+16}px`,width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*3}px`,height:'18px',borderRadius:"10px",background:"blue",left:`${(((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 *24))-weekend(moment(props.state.mintime).startOf("month"),(moment(item.start))))*72}px`}}>{item.children.map((data,key)=><div style={{position:'absolute',top:`${38*key+38}px`,width:`${((moment(data.end)-moment(data.start))/1000/60/60-(weekend(moment(data.start),moment(data.end))*24))*3}px`,height:'18px',borderRadius:"10px",background:"blue",left:`${(moment(data.start)-moment(item.start))/1000/60/60*3}px`}}></div>)}</div>:<div style={{position:'absolute',top:`${key>3?40*key+95:40*key+15}px`,width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*3}px`,height:'18px',borderRadius:"10px",background:"blue",left:`${(((moment(item.start)-moment(props.state.mintime).startOf("month"))/(1000 * 60 * 60 *24))-weekend(moment(props.state.mintime).startOf("month"),(moment(item.start))))*72}px`}}></div>)}
@@ -165,7 +165,7 @@ function Gantetu(props) {
         }
       </div>
       <div style={{flex:'1',overflow:"scroll",position:'relative'}}   className='qwe2'>
-        <div style={{width:`${zhou.length*336}px`,height:"100%"}}>  
+        <div style={{width:`${zhou.length*336}px`,height:`${props.state.List.length*500}px`,position:'absolute'}}>  
         {zhouweekday.map(data=><div style={{width:'336px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} 
         ></div>)}
         {
@@ -189,7 +189,7 @@ function Gantetu(props) {
         }
       </div>
       <div style={{flex:'1',overflow:"scroll",position:'relative'}}  className='qwe3'>
-        <div style={{width:`${zhou.length*240}px`,height:'100%'}}>  
+        <div style={{width:`${zhou.length*240}px`,height:`${props.state.List.length*500}px`,position:'absolute'}}>  
         {zhouweekday.map(data=><div style={{width:'240px',  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}} ></div>)}
         {
            props.state.iskong?props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*2}px`,height:'18px',background:'blue',left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60-weekend(moment(props.state.mintime).startOf("month"),moment(item.start))*24)*2}px`,top:`${15+40*key}px`}}></div>):props.state.List.map((item,key)=>item.children?<div style={{position:'absolute',borderRadius:"10px",width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*2}px`,height:'18px',background:'blue',left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60-weekend(moment(props.state.mintime).startOf("month"),moment(item.start))*24)*2}px`,top:`${15+40*key}px`}}>{item.children.map((data,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${((moment(data.end)-moment(data.start))/1000/60/60-weekend(moment(data.start),moment(data.end))*24)*2}px`,height:'18px',background:'blue',left:`${((moment(data.start)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(data.start))*24)*2}px`,top:`${38+40*key}px`}}></div>)}</div>:<div style={{position:'absolute',borderRadius:"10px",width:`${((moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24)*2}px`,height:'18px',background:'blue',left:`${((moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60-weekend(moment(props.state.mintime).startOf("month"),moment(item.start))*24)*2}px`,top:`${key>3?95+40*key:15+40*key}px`}}></div>)
@@ -211,7 +211,7 @@ function Gantetu(props) {
         }
       </div>
      <div style={{flex:'1',overflow:"scroll",position:'relative'}} className='qwe4'>
-      <div style={{width:`${(year.length+1)*365*24}px`,height:'100%'}}>  
+      <div style={{width:`${(year.length+1)*365*24}px`,height:`${props.state.List.length*500}px`,position:'absolute'}}>  
         {count.map(item=>yue.map(data=><div style={{width:`${24*moment(data).daysInMonth()}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}}></div>))}
         {
           props.state.iskong?props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60}px`,top:`${15+40*key}px`}}></div>):props.state.List.map((item,key)=>item.children?<div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60}px`,top:`${15+40*key}px`}}>{item.children.map((data,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(data.end)-moment(data.start))/1000/60/60}px`,height:'18px',background:'blue',left:`${(moment(data.start)-moment(item.start))/1000/60/60}px`,top:`${38+40*key}px`}}></div>)}</div>:<div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(props.state.mintime).startOf("month"))/1000/60/60}px`,top:`${key>3?95+40*key:15+40*key}px`}}></div>)
@@ -233,7 +233,7 @@ function Gantetu(props) {
         }
       </div>
       <div style={{flex:'1',overflow:"scroll",position:'relative'}}   className='qwe5'>
-        <div style={{width:`${year.length*(365-96)*24}px`,height:'100%'}}>  
+        <div style={{width:`${year.length*(365-96)*24}px`,height:`${props.state.List.length*500}px`,position:'absolute'}}>  
         {count.map(item=>yue.map(data=><div style={{width:`${24*(moment(data).daysInMonth()-weekend(moment(data).startOf("month"),moment(data).endOf("month")))}px`,  display: 'inline-block',border:'1px solid #c2c2c2',height:'100%',borderLeft:'0px'}}></div>))}
         {
           props.state.iskong?props.state.List.map((item,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(now))/1000/60/60-weekend(moment(now),moment(item.start))*24}px`,top:`${15+40*key}px`}}></div>):props.state.List.map((item,key)=>item.children?<div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(now))/1000/60/60-weekend(moment(now),moment(item.start))*24}px`,top:`${15+40*key}px`}}>{item.children.map((data,key)=><div style={{position:'absolute',borderRadius:"10px",width:`${(moment(data.end)-moment(data.start))/1000/60/60-weekend(moment(data.start),moment(data.end))*24}px`,height:'18px',background:'blue',left:`${(moment(data.start)-moment(item.start))/1000/60/60-weekend(moment(data.start),moment(item.start))*24}px`,top:`${38+40*key}px`}}></div>)}</div>:<div style={{position:'absolute',borderRadius:"10px",width:`${(moment(item.end)-moment(item.start))/1000/60/60-weekend(moment(item.start),moment(item.end))*24}px`,height:'18px',background:'blue',left:`${(moment(item.start)-moment(now))/1000/60/60-weekend(moment(now),moment(item.start))*24}px`,top:`${key>3?95+40*key:15+40*key}px`}}></div>)
