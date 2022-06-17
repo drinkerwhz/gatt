@@ -62,7 +62,7 @@ function Rengwu(props) {
               <ul style={{height:'100%'}}>
                   {
                   props.state.List.map((item,key1)=>
-                  <li key={key1} style={{marginBottom:'20px',height:'20px'}}>
+                  <li key={key1} style={{marginBottom:'20px'}}>
                   {
                     item.children?<div><div style={{display:'inline-block',cursor:"pointer"}} onClick={handlekong}><i style={{color:'#c2c2c2',marginRight:'10px'}}>{!props.state.iskong?'▼':'▶'}</i><span style={{color:'#c2c2c2',marginRight:'8px'}}>{key1+1})</span>
                     {item.main}
