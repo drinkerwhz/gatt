@@ -151,11 +151,11 @@ function Gantetu(props) {
           <div style={{width:'0',height:'0',border:'10px solid transparent',borderTopColor:'#c2c2c2',borderBottomColor:'transparent',position:'absolute',top:'148px',left:'140px'}}></div>
           <div style={{display:'flex',flexDirection:'column'}}>  
             <span style={{color:'black'}}>{value.main}</span>
-            <span>负责人：王浩哲</span>
+            <span style={{fontSize:'12px'}}>负责人：王浩哲</span>
           </div>
-          <div style={{display:'flex',flexDirection:'column'}}>
-            <span>开始：{moment(value.start).format('YYYY-MM-DD')}</span>
-          <span>结束：{moment(value.end).format('YYYY-MM-DD')}</span>
+          <div style={{display:'flex',flexDirection:'column',marginTop:'30px',fontSize:'12px'}}>
+            <span style={{marginBottom:'10px'}}>开始：<b style={{color:'black'}}>{moment(value.start).format('YYYY-MM-DD')}</b></span>
+          <span>结束：<b style={{color:'black'}}>{moment(value.end).format('YYYY-MM-DD')}</b></span>
           </div>
         </div>)
   }
