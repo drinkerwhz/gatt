@@ -48,12 +48,237 @@ const reducer=(preState={
                 },  
             ]
         },
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+        {
+            main:"产品设计吖吖",
+            start:moment('2022-06-09 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-09 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周四',
+            dayend:"周四"
+        },
+        {
+            main:"需求调研需求调研需求",
+            start:moment('2022-06-10 09:00').format("YYYY-MM-DD HH:mm"),
+            end:moment('2022-06-10 18:00').format("YYYY-MM-DD HH:mm"),
+            day:1,
+            daystart:'周五',
+            dayend:"周五"
+        }, 
+
     ],
     iskong:true,
     current:1,
     current1:2,
     mintime:"2022-01-27",
-    maxtime:"2023-01-27"
+    maxtime:"2023-01-27",
 },action)=>{
     let {type,data}=action
     let newState={...preState}
@@ -78,7 +303,6 @@ const reducer=(preState={
             return newState
         case 'min':
             newState.mintime=data
-            console.log(newState.mintime);
             return newState
         default:
             return preState
