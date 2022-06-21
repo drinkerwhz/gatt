@@ -162,18 +162,18 @@ function Gantetu(props) {
   function blue(item,key,sum){
     if(props.state.iskong){
       return(
-      <div onMouseEnter={handleenter} onMouseLeave={handleleave} className='blue' style={{top:`${40*key+16}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*sum}px`,left:`${((moment(item.start)-moment(now))/(1000 * 60 * 60 ))*sum}px`}}>{40*key+16-updown>150?up(item):down(item)}</div>
+      <div onMouseEnter={handleenter} onMouseLeave={handleleave} className='blue' style={{top:`${40*key+16}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*sum}px`,left:`${((moment(item.start)-moment(props.state.current===2?weekdaynow:now))/(1000 * 60 * 60 ))*sum}px`}}>{40*key+16-updown>150?up(item):down(item)}</div>
       )
     }
     else{
       if(item.children){
         return(
-          <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top:`${40*key+16}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*sum}px`,left:`${((moment(item.start)-moment(now))/(1000 * 60 * 60 ))*sum}px`}}>{40*key+16-updown>150?up(item):down(item)}{item.children.map((data,key)=><div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top:`${38*key+38}px`,width:`${(moment(data.end)-moment(data.start))/1000/60/60*sum}px`,left:`${(moment(data.start)-moment(item.start))/1000/60/60*sum}px`}}>{38*key+38-updown>150?up(data):down(data)}</div>)}</div>
+          <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top:`${40*key+16}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*sum}px`,left:`${((moment(item.start)-moment(props.state.current===2?weekdaynow:now))/(1000 * 60 * 60 ))*sum}px`}}>{40*key+16-updown>150?up(item):down(item)}{item.children.map((data,key)=><div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top:`${38*key+38}px`,width:`${(moment(data.end)-moment(data.start))/1000/60/60*sum}px`,left:`${(moment(data.start)-moment(item.start))/1000/60/60*sum}px`}}>{38*key+38-updown>150?up(data):down(data)}</div>)}</div>
         )
       }
       else{
         return(
-          <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top:`${key>3?40*key+96:40*key+16}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*sum}px`,left:`${((moment(item.start)-moment(now))/(1000 * 60 * 60 ))*sum}px`}}>{key>3?40*key+96-updown>150?up(item):down(item):40*key+16-updown>150?up(item):down(item)}</div>
+          <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top:`${key>3?40*key+96:40*key+16}px`,width:`${(moment(item.end)-moment(item.start))/1000/60/60*sum}px`,left:`${((moment(item.start)-moment(props.state.current===2?weekdaynow:now))/(1000 * 60 * 60 ))*sum}px`}}>{key>3?40*key+96-updown>150?up(item):down(item):40*key+16-updown>150?up(item):down(item)}</div>
         )
       }
     }
@@ -181,18 +181,18 @@ function Gantetu(props) {
   function blueweekend(item,key,sum){
     if(props.state.iskong){
       return(
-        <div onMouseEnter={handleenter} onMouseLeave={handleleave}  className='blue' style={{top: `${40*key+16}px`, width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * sum}px`,left: `${(((moment(item.start) - moment(now)) / (1000 * 60 * 60 * 24)) - weekend(moment(now), (moment(item.start)))) * 24*sum}px` }}>{40*key+16-updown>150?up(item):down(item)}</div>
+        <div onMouseEnter={handleenter} onMouseLeave={handleleave}  className='blue' style={{top: `${40*key+16}px`, width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * sum}px`,left: `${(((moment(item.start) - moment(props.state.current===2?weekdaynow:now)) / (1000 * 60 * 60 * 24)) - weekend(moment(props.state.current===2?weekdaynow:now), (moment(item.start)))) * 24*sum}px` }}>{40*key+16-updown>150?up(item):down(item)}</div>
       )
     }
     else{
       if(item.children){
         return(
-          <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top: `${40 * key + 16}px`, width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * sum}px`,left: `${(((moment(item.start) - moment(now)) / (1000 * 60 * 60 * 24)) - weekend(moment(now), (moment(item.start)))) * sum*24}px` }}>{40*key+16-updown>150?up(item):down(item)}{item.children.map((data, key) => <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top: `${38 * key + 38}px`, width: `${((moment(data.end) - moment(data.start)) / 1000 / 60 / 60 - (weekend(moment(data.start), moment(data.end)) * 24)) * sum}px`, left: `${(moment(data.start) - moment(item.start)) / 1000 / 60 / 60 * sum}px` }}>{38*key+38-updown>150?up(data):down(data)}</div>)}</div>
+          <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top: `${40 * key + 16}px`, width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * sum}px`,left: `${(((moment(item.start) - moment(props.state.current===2?weekdaynow:now)) / (1000 * 60 * 60 * 24)) - weekend(moment(props.state.current===2?weekdaynow:now), (moment(item.start)))) * sum*24}px` }}>{40*key+16-updown>150?up(item):down(item)}{item.children.map((data, key) => <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{top: `${38 * key + 38}px`, width: `${((moment(data.end) - moment(data.start)) / 1000 / 60 / 60 - (weekend(moment(data.start), moment(data.end)) * 24)) * sum}px`, left: `${(moment(data.start) - moment(item.start)) / 1000 / 60 / 60 * sum}px` }}>{38*key+38-updown>150?up(data):down(data)}</div>)}</div>
         )
       }
       else{
           return(
-            <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{ top: `${key > 3 ? 40 * key + 95 : 40*key+16}px`, width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * sum}px`,left: `${(((moment(item.start) - moment(now)) / (1000 * 60 * 60 * 24)) - weekend(moment(now), (moment(item.start)))) * sum*24}px` }}>{key>3?40*key+96-updown>150?up(item):down(item):40*key+16-updown>150?up(item):down(item)}</div>
+            <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{ top: `${key > 3 ? 40 * key + 95 : 40*key+16}px`, width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * sum}px`,left: `${(((moment(item.start) - moment(props.state.current===2?weekdaynow:now)) / (1000 * 60 * 60 * 24)) - weekend(moment(props.state.current===2?weekdaynow:now), (moment(item.start)))) * sum*24}px` }}>{key>3?40*key+96-updown>150?up(item):down(item):40*key+16-updown>150?up(item):down(item)}</div>
           )
       }
     }
@@ -228,7 +228,6 @@ function Gantetu(props) {
         <div className='qwe'>
           <div style={{ width: `${weekdayri.length * 72}px`, height: `${props.state.List.length < 21 ? 100 : props.state.List.length * 40 + 8}${props.state.List.length < 21 ? '%' : 'px'}`, position: 'absolute', }}>
             {weekdayri.map((item, key) => <div className={moment().diff(moment(now), 'days') === key + weekend(moment(now), moment()) ? 'today' : 'ri'}  key={key}></div>)}
-
             { props.state.List.map((item, key) =>blueweekend(item,key,3))}
           </div>
         </div>
@@ -249,7 +248,7 @@ function Gantetu(props) {
               {zhouweekday.map(data => <div className='xian' style={{ width: '336px'}}
               ></div>)}
               {
-                props.state.iskong ? props.state.List.map((item, key) => <div onMouseEnter={handleenter} onMouseLeave={handleleave}  className='blue' style={{ width: `${(moment(item.end) - moment(item.start)) / 1000 / 60 / 60 * 2}px`, left: `${(moment(item.start) - moment(weekdaynow)) / 1000 / 60 / 60 * 2}px`, top: `${40*key+16}px` }}>{40*key+16-updown>150?up(item):down(item)}</div>) : props.state.List.map((item, key) => item.children ? <div onMouseEnter={handleenter} onMouseLeave={handleleave}  className='blue' style={{width: `${(moment(item.end) - moment(item.start)) / 1000 / 60 / 60 * 2}px`, left: `${(moment(item.start) - moment(weekdaynow)) / 1000 / 60 / 60 * 2}px`, top: `${40*key+16}px` }}>{40*key+16-updown>150?up(item):down(item)}{item.children.map((data, key) => <div onMouseEnter={handleenter} onMouseLeave={handleleave}  className='blue' style={{ width: `${(moment(data.end) - moment(data.start)) / 1000 / 60 / 60 * 2}px`, left: `${(moment(data.start) - moment(item.start)) / 1000 / 60 / 60 * 2}px`, top: `${38 + 40 * key}px` }}>{38*key+38-updown>150?up(data):down(data)}</div>)}</div> : <div onMouseEnter={handleenter} onMouseLeave={handleleave}  className='blue' style={{ width: `${(moment(item.end) - moment(item.start)) / 1000 / 60 / 60 * 2}px`, left: `${(moment(item.start) - moment(now)) / 1000 / 60 / 60 * 2}px`, top: `${key > 3 ? 95 + 40 * key : 40*key+16}px` }}>{key>3?40*key+96-updown>150?up(item):down(item):40*key+16-updown>150?up(item):down(item)}</div>)
+                 props.state.List.map((item, key) =>blue(item,key,2))
               }
               {
                 <div className='jintian' style={{width: '48px', left: `${moment().diff(moment(weekdaynow), 'days') * 48}px`}}></div>
@@ -272,7 +271,7 @@ function Gantetu(props) {
             <div style={{ width: `${zhou.length * 240}px`, height: `${props.state.List.length < 21 ? 100 : props.state.List.length * 40 + 8}${props.state.List.length < 21 ? '%' : 'px'}`, position: 'absolute' }}>
               {zhouweekday.map(data => <div className='xian' style={{ width: '240px'}} ></div>)}
               {
-                props.state.iskong ? props.state.List.map((item, key) => <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * 2}px`, left: `${((moment(item.start) - moment(now)) / 1000 / 60 / 60 - weekend(moment(now), moment(item.start)) * 24) * 2}px`, top: `${40*key+16}px` }}>{40*key+16-updown>150?up(item):down(item)}</div>) : props.state.List.map((item, key) => item.children ? <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{ width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * 2}px`, left: `${((moment(item.start) - moment(now)) / 1000 / 60 / 60 - weekend(moment(now), moment(item.start)) * 24) * 2}px`, top: `${40*key+16}px` }}>{40*key+16-updown>150?up(item):down(item)}{item.children.map((data, key) => <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{width: `${((moment(data.end) - moment(data.start)) / 1000 / 60 / 60 - weekend(moment(data.start), moment(data.end)) * 24) * 2}px`, left: `${((moment(data.start) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(data.start)) * 24) * 2}px`, top: `${38 + 40 * key}px` }}>{38*key+38-updown>150?up(data):down(data)}</div>)}</div> : <div className='blue' onMouseEnter={handleenter} onMouseLeave={handleleave}  style={{width: `${((moment(item.end) - moment(item.start)) / 1000 / 60 / 60 - weekend(moment(item.start), moment(item.end)) * 24) * 2}px`, left: `${((moment(item.start) - moment(now)) / 1000 / 60 / 60 - weekend(moment(now), moment(item.start)) * 24) * 2}px`, top: `${key > 3 ? 95 + 40 * key : 40*key+16}px` }}>{key>3?40*key+96-updown>150?up(item):down(item):40*key+16-updown>150?up(item):down(item)}</div>)
+                 props.state.List.map((item, key) =>blueweekend(item,key,2))
               }
               {
                 <div className='jintian' style={{width: '48px', left: `${((moment().diff(moment(now), 'days')) - weekend(moment(now), moment())) * 48}px`}}>{moment().diff(moment(now), 'days')}</div>
